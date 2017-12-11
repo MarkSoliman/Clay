@@ -14,17 +14,6 @@ namespace Clay.api.Controllers
     {
         Simulation simulation = new Simulation();
         IAuthenticate authentication;
-        void SetSimulation()
-        {
-            if (HttpContext.Current.Session["Simulation"] != null)
-            {
-                simulation = HttpContext.Current.Session["Simulation"] as Simulation;
-            }
-            else
-            {
-                simulation = new Simulation();
-            }
-        }
         [System.Web.Http.HttpGet]
         public bool OpenDoor(int user_id, int door_id)
         {
@@ -46,7 +35,7 @@ namespace Clay.api.Controllers
         }
         public List<IDoor>GetDoors(int building_id)
         {
-            return simulation.GetBuilding(0).GetDoors().ToList();
+            return simulation.GetBuilding(building_id).GetDoors().ToList();
         }
     }
 }

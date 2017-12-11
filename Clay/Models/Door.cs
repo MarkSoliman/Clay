@@ -5,7 +5,28 @@ namespace Clay.Models
     public class Door:IDoor
     {
         int id;
+
         string location;
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+        }
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+        }
+        public string Status{
+            get
+            {
+                return this.DoorStatus();
+            }
+        }
         ILock doorLock;
         List<Log> logs;
         protected IList<User> users;

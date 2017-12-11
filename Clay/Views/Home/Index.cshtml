@@ -1,3 +1,46 @@
 ﻿<h2>Welcome To Clay Locking System</h2>
-@for()
+
+<table id="tbl_doors">
+</table>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js">
+</script>
+<script type="text/javascript">
+    function toggelDoor(id,status){
+        var url="http://127.0.0.1:8080/api/Doors/"; 
+        if(status == 'closed'){
+            url+='OpenDoor/';
+        }else{
+            url+= 'CloseDoor/';
+        }
+        $.ajax({
+        type:"GET",
+        url:url,
+        data:{door_id:id,user_id:1},
+        contentType: 'application/json; charset=utf-8',
+        success: function(data){
+            if(data){
+                alert('opened');
+            }
+        },
+        error:function(xhr, status, error){
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+        });
+    }
+    $(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      url: "http://127.0.0.1:8080/api/Doors/GetDoors?building_id=0",
+      data: {},
+      cache: false,
+      success: function(data){
+         var tbl = $('#tbl_doors');
+         for(var i=0;i<data.length;i++){
+            tbl.append('<tr><td>'+data[i].Location+'<input type="button" onclick="toggelDoor('+data[i].Id+ ',' + "'" + data[i].Status + "'" + ')" value="' + data[i].Status + '"></td></tr>');
+         }
+      }
+    });
+    });
+</script>
 
