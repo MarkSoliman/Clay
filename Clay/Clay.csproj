@@ -102,6 +102,7 @@
     <Compile Include="Models\Authenticate.cs" />
     <Compile Include="api\Controllers\DoorsController.cs" />
     <Compile Include="api\Controllers\Simulation.cs" />
+    <Compile Include="api\Controllers\LogsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

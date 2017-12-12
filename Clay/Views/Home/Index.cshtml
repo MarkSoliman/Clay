@@ -2,10 +2,16 @@
 
 <table id="tbl_doors">
 </table>
+<table id="tbl_logs">
+</table>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js">
 </script>
 <script type="text/javascript">
-    function toggelDoor(id,status){
+    function addLog(name, status){
+        var tbl = $('#tbl_logs');
+        tbl.append('<tr><td>'+name+'</td><td>'+status+'</td></tr>');
+    }
+    function toggelDoor(id, status, location){
         var url="http://127.0.0.1:8080/api/Doors/"; 
         if(status == 'closed'){
             url+='OpenDoor/';
@@ -19,7 +25,7 @@
         contentType: 'application/json; charset=utf-8',
         success: function(data){
             if(data){
-                alert('opened');
+                addLog(location, 'opened');
             }
         },
         error:function(xhr, status, error){
@@ -37,7 +43,7 @@
       success: function(data){
          var tbl = $('#tbl_doors');
          for(var i=0;i<data.length;i++){
-            tbl.append('<tr><td>'+data[i].Location+'<input type="button" onclick="toggelDoor('+data[i].Id+ ',' + "'" + data[i].Status + "'" + ')" value="' + data[i].Status + '"></td></tr>');
+            tbl.append('<tr><td>'+data[i].Location+'<input type="button" onclick="toggelDoor('+data[i].Id+ ',' + "'" + data[i].Status + "'"+',' + "'" + data[i].Location + "'" + ')" value="' + data[i].Status + '"></td></tr>');
          }
       }
     });
