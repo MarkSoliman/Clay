@@ -36,6 +36,17 @@
     }
     $(document).ready(function(){
     $.ajax({
+        type: "GET",
+        url: "http://127.0.0.1:8080/api/Logs/GetLogs?building_id=0",
+        data :{},
+        sucess:function(data){
+                var tbl = $('#tbl_logs');
+                for(var i=0;i<data.length;i++){
+                    addLog(data[i].Location, data[i].door_status);
+                }
+        }
+    });
+    $.ajax({
       type: "GET",
       url: "http://127.0.0.1:8080/api/Doors/GetDoors?building_id=0",
       data: {},

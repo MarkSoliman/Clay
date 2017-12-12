@@ -11,5 +11,6 @@ namespace Clay.Models
         List<Log> GetLogs();
         User GetUser(int id);
         void AddUser(User user);
+        string GetLocation();
     }
 }

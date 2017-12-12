@@ -7,6 +7,10 @@ namespace Clay.Models
         int id;
 
         string location;
+        public string GetLocation()
+        {
+            return this.location;
+        }
         public string Location
         {
             get
@@ -48,10 +52,6 @@ namespace Clay.Models
         public List<Log> GetLogs()
         {
             return logs;
-        }
-        public string GetLocation()
-        {
-            return this.location;
         }
         public int GetId()
         {
